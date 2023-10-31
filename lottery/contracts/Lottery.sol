@@ -24,4 +24,13 @@ contract Lottery {
         players[index].transfer(this.balance);
         players = new address[](0);
     }
+
+    function getPlayers() public view returns (address[]) {
+        return players;
+    }
+
+    modifier restricted() {
+        require(msg.sender == manager);
+        _;
+    }
 }
